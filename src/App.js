@@ -1,9 +1,10 @@
-import React, { Component} from 'react'
+import React, { Component } from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
 import SearchBooks from './SearchBooks.js'
 import BookShelf from './BookShelf'
 
+// Define Shelf Names
 const shelfs = ['Currently Reading', 'Want to Read', 'Read']
 
 class BooksApp extends Component {
@@ -77,11 +78,21 @@ class BooksApp extends Component {
     this.setState({ showSearchPage: true })
   }
 
-  render() {
+  handleChangeShelf = (bookID, newShelf) => {
+    
+    // Find the book in the state's books arrray
+    const bookIndex = this.state.books.findIndex(book => book.id === bookID)
 
-    // const currentlyReadingBooks = this.state.books.slice(0, 2)
-    // const wantToReadBooks = this.state.books.slice(2, 4)
-    // const readBooks = this.state.books.slice(-3)
+    // Make a copy of the state's book and change it
+    let changedBooks = this.state.books
+    changedBooks[bookIndex].shelf = newShelf
+
+    // Set the books to the changed books
+    this.setState({ books: changedBooks })
+    
+  }
+
+  render() {
 
     return (
       <div className="app">
@@ -100,16 +111,19 @@ class BooksApp extends Component {
                 <BookShelf
                   shelfName = 'Currently Reading'
                   books = {this.state.books}
+                  onchangeShelf = {this.handleChangeShelf}
                 />
 
                 <BookShelf
                   shelfName = 'Want to Read'
                   books = {this.state.books}
+                  onchangeShelf = {this.handleChangeShelf}
                 />
 
                 <BookShelf
                   shelfName = 'Read'
                   books = {this.state.books}
+                  onchangeShelf = {this.handleChangeShelf}
                 />
               </div>
             </div>

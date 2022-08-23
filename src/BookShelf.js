@@ -5,7 +5,7 @@ class BookShelf extends Component{
 
     render(){
 
-        const {shelfName, books} = this.props
+        const {shelfName, books, onchangeShelf} = this.props
 
         // Define the books that belong to this shelf
         const shelfBooks = books.filter(book => book.shelf === shelfName)
@@ -20,9 +20,11 @@ class BookShelf extends Component{
                                 return(
                                     <li key = {book.id}> 
                                         <Book
+                                            id = {book.id}
                                             style = {book.style}
                                             title = {book.title}
                                             author = {book.author}
+                                            onchangeShelf = {onchangeShelf}
                                         />
                                     </li>
                                 )
