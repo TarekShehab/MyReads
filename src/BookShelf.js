@@ -5,14 +5,14 @@ class BookShelf extends Component{
 
     render(){
 
-        const {shelfName, books, onchangeShelf} = this.props
+        const {shelfTitle, books, onchangeShelf} = this.props
 
-        // Define the books that belong to this shelf
-        const shelfBooks = books.filter(book => book.shelf === shelfName)
+        // Define the books that belong to this shelf by comparing shelf names
+        const shelfBooks = books.filter(book => (book.shelf.toLowerCase().replace(/\s/g, '')) === shelfTitle.toLowerCase().replace(/\s/g, ''))
 
         return (
             <div className="bookshelf">
-                <h2 className="bookshelf-title">{shelfName}</h2>
+                <h2 className="bookshelf-title">{shelfTitle}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
                         {
@@ -21,10 +21,11 @@ class BookShelf extends Component{
                                     <li key = {book.id}> 
                                         <Book
                                             id = {book.id}
-                                            style = {book.style}
+                                            imageLinks = {book.imageLinks}
                                             title = {book.title}
-                                            author = {book.author}
+                                            authors = {book.authors}
                                             onchangeShelf = {onchangeShelf}
+                                            shelf = {book.shelf}
                                         />
                                     </li>
                                 )
