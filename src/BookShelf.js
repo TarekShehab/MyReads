@@ -6,6 +6,8 @@ class BookShelf extends Component{
     render(){
 
         const {shelfName, books} = this.props
+
+        // Define the books that belong to this shelf
         const shelfBooks = books.filter(book => book.shelf === shelfName)
 
         return (
@@ -16,7 +18,7 @@ class BookShelf extends Component{
                         {
                             shelfBooks.map(book => {
                                 return(
-                                    <li> 
+                                    <li key = {book.id}> 
                                         <Book
                                             style = {book.style}
                                             title = {book.title}
