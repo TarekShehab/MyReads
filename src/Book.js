@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 
+const shelfNames = ['currentlyReading', 'wantToRead', 'read']
+
 class Book extends Component {
     render() {
 
         const {id, imageLinks, title, authors, onchangeShelf, shelf} = this.props
-        const imageURL = `url("${imageLinks.thumbnail}")`
+        const imageURL = imageLinks ? `url(${imageLinks.smallThumbnail})` : ''
         const style = { width: 128, height: 193, backgroundImage: imageURL }
 
         return(
@@ -17,7 +19,7 @@ class Book extends Component {
                 <div className="book-shelf-changer">
                   <select 
                     onChange={(e) => onchangeShelf(id, e.target.value)}
-                    defaultValue = {shelf}  
+                    defaultValue = {shelfNames.includes(shelf)? shelf : "none"}  
                   >
                     <option value='moveto' disabled>Move to..</option>
                     <option value="currentlyReading">Currently Reading</option>
@@ -28,7 +30,7 @@ class Book extends Component {
                 </div>
               </div>
               <div className="book-title">{title}</div>
-              <div className="book-authors">{authors.toString()}</div>
+              <div className="book-authors">{authors ? authors.toString() : ''}</div>
             </div>
         )
     }
