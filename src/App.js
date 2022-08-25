@@ -71,50 +71,54 @@ class BooksApp extends Component {
       <StrictMode>
         <div className="app">
           <Routes>
-            <Route exact path='/' render={() => (
-              <div className="list-books">
-                <div className="list-books-title">
-                  <h1>MyReads</h1>
-                </div>
-                <div className="list-books-content">
-                  {/* shelfs */}
-                  <div>
-                    <BookShelf
-                      shelfTitle = 'Currently Reading'
-                      books = {this.state.books}
-                      onchangeShelf = {this.handleChangeShelf}
-                    />
-
-                    <BookShelf
-                      shelfTitle = 'Want to Read'
-                      books = {this.state.books}
-                      onchangeShelf = {this.handleChangeShelf}
-                    />
-
-                    <BookShelf
-                      shelfTitle = 'Read'
-                      books = {this.state.books}
-                      onchangeShelf = {this.handleChangeShelf}
-                    />
+            <Route 
+              exact path='/' 
+              element={
+                <div className="list-books">
+                  <div className="list-books-title">
+                    <h1>MyReads</h1>
                   </div>
-                </div>
-                {/* Search link */}
-                <div className="open-search">
-                  <Link 
-                    to='/search'
-                  >
-                    Add a book
-                  </Link>
-                </div>
-              </div>)}
+                  <div className="list-books-content">
+                    {/* shelfs */}
+                    <div>
+                      <BookShelf
+                        shelfTitle = 'Currently Reading'
+                        books = {this.state.books}
+                        onchangeShelf = {this.handleChangeShelf}
+                      />
+
+                      <BookShelf
+                        shelfTitle = 'Want to Read'
+                        books = {this.state.books}
+                        onchangeShelf = {this.handleChangeShelf}
+                      />
+
+                      <BookShelf
+                        shelfTitle = 'Read'
+                        books = {this.state.books}
+                        onchangeShelf = {this.handleChangeShelf}
+                      />
+                    </div>
+                  </div>
+                  {/* Search link */}
+                  <div className="open-search">
+                    <Link 
+                      to='/search'
+                    >
+                      Add a book
+                    </Link>
+                  </div>
+                </div>}
             />
             
-            <Route path='/search' render={() => (
-              <SearchBooks
-                searchResults = {this.state.searchResults}
-                onInputChange = {this.handlSearchQuery}
-                onchangeShelf = {this.handleChangeShelf}
-              />)}
+            <Route 
+              path='/search' 
+              element={
+                <SearchBooks
+                  searchResults = {this.state.searchResults}
+                  onInputChange = {this.handlSearchQuery}
+                  onchangeShelf = {this.handleChangeShelf}
+                />}
             />
           </Routes>   
         </div>
