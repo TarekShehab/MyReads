@@ -54,7 +54,6 @@ body, .app {
 }
 
 .open-search :last-child{
-  color: white;
   display: block;
   width: 80px;
   height: 80px;
